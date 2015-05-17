@@ -2,6 +2,82 @@
   "name": "BuildingBlocks",
   "version": "0.0.0",
   "dependencies": {
+    "body-parser": {
+      "version": "1.12.4",
+      "from": "body-parser@",
+      "dependencies": {
+        "bytes": {
+          "version": "1.0.0",
+          "from": "bytes@1.0.0"
+        },
+        "content-type": {
+          "version": "1.0.1",
+          "from": "content-type@~1.0.1"
+        },
+        "debug": {
+          "version": "2.2.0",
+          "from": "debug@~2.2.0",
+          "dependencies": {
+            "ms": {
+              "version": "0.7.1",
+              "from": "ms@0.7.1"
+            }
+          }
+        },
+        "depd": {
+          "version": "1.0.1",
+          "from": "depd@~1.0.1"
+        },
+        "iconv-lite": {
+          "version": "0.4.8",
+          "from": "iconv-lite@0.4.8"
+        },
+        "on-finished": {
+          "version": "2.2.1",
+          "from": "on-finished@~2.2.1",
+          "dependencies": {
+            "ee-first": {
+              "version": "1.1.0",
+              "from": "ee-first@1.1.0"
+            }
+          }
+        },
+        "qs": {
+          "version": "2.4.2",
+          "from": "qs@2.4.2"
+        },
+        "raw-body": {
+          "version": "2.0.1",
+          "from": "raw-body@~2.0.1",
+          "dependencies": {
+            "bytes": {
+              "version": "2.0.1",
+              "from": "bytes@2.0.1"
+            }
+          }
+        },
+        "type-is": {
+          "version": "1.6.2",
+          "from": "type-is@~1.6.2",
+          "dependencies": {
+            "media-typer": {
+              "version": "0.3.0",
+              "from": "media-typer@0.3.0"
+            },
+            "mime-types": {
+              "version": "2.0.11",
+              "from": "mime-types@~2.0.11",
+              "dependencies": {
+                "mime-db": {
+                  "version": "1.9.1",
+                  "from": "mime-db@~1.9.1"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "express": {
       "version": "4.12.3",
       "from": "express@4",
