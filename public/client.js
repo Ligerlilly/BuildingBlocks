@@ -24,16 +24,24 @@ $(function(){
 
   function appendToList(cities) {
     var list = [];
-    var content, city;
-    for(var i in cities){
-      city = cities[i];
+    //var content, city;
+    cities.forEach(function(city){
       content = '<a href="/cities/'+city+'">'+city+'</a>'+ // + // example on how to serve static images
         ' <a href="#" data-city="'+city+'">'+
         '<img src="delete.png" width="15px"></a>';
       list.push($('<li>', { html: content }));
-    }
 
-    $('.city-list').append(list)
+    });
+    // for(var i in cities){
+    //   city = cities[i];
+    //   console.log(city);
+    //   content = '<a href="/cities/'+city+'">'+city+'</a>'+ // + // example on how to serve static images
+    //     ' <a href="#" data-city="'+city+'">'+
+    //     '<img src="delete.png" width="15px"></a>';
+    //   list.push($('<li>', { html: content }));
+    // }
+
+    $('.city-list').append(list);
   }
 
 

@@ -4,22 +4,48 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 var bodyParser = require('body-parser');
 var urlencode = bodyParser.urlencoded({ extended: false });
+var mongoose = require('mongoose');
 
+mongoose.connect('mongodb://localhost:27017/test');
 
-var cities = {
-  'Detroit': '',
-  'Grand Rapids': '',
-  'Portland': ''
+var citySchema = {
+  name:String,
+  description:String
 };
 
+var City = mongoose.model('City', citySchema, 'cities');
+
+// var cities = {
+//   'Detroit': '',
+//   'Grand Rapids': '',
+//   'Portland': ''
+// };
+
+var findRestaurants = function(db, callback) {
+   var docs = db.collection('cities').find( );
+   callback();
+   return docs;
+};
 
 app.get('/cities', function(request, response){
-  response.json(Object.keys(cities));
+  // response.json(Object.keys(cities));
+  City.find(function(err, doc){
+    var cityNames = [];
+    doc.forEach(function(city){
+      cityNames.push(city.name);
+    });
+    response.json(cityNames);
+  });
+
 });
 
 app.post('/cities', urlencode, function(request, response){
   var newCity = request.body;
-  cities[newCity.name] = newCity.description;
+  var city = {
+    name: newCity.name,
+    description: newCity.description
+  };
+  mongoose.connection.collection('cities').insert(city);
   response.status(201).json(newCity.name);
 
 });

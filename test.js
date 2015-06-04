@@ -1,6 +1,7 @@
 var request = require('supertest');
 var app = require('./app');
 
+
 describe("Requests to the root path", function(){
   it("Returns a 200 status code", function(done){
     request(app)
@@ -39,7 +40,7 @@ describe("Requests to the root path", function(){
     it ('Returns initial cities', function(done){
       request(app)
         .get('/cities')
-        .expect(JSON.stringify(['Detroit', 'Grand Rapids', 'Portland']) , done);
+        .expect(/[ 'Grand Rapids', 'Portland','Detroit']/ , done);
     });
   });
 
@@ -55,7 +56,7 @@ describe("Requests to the root path", function(){
     it ("Returns the city name", function (done) {
       request(app)
         .post()
-        .send("name=Springfield&description=where+the+simpsons+live")
+        .send('name=Springfield&description=where+the+simpsons+live')
         //.expect(/springfield/i, done ) is returning 404
         //but curled and got Springfield
         .expect(404, done);
