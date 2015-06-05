@@ -1,5 +1,7 @@
 var request = require('supertest');
 var app = require('./app');
+var mongoose = require('mongoose');
+
 
 
 describe("Requests to the root path", function(){
@@ -60,5 +62,14 @@ describe("Requests to the root path", function(){
         //.expect(/springfield/i, done ) is returning 404
         //but curled and got Springfield
         .expect(404, done);
+    });
+  });
+
+  describe("Deleting Cities", function(){
+    mongoose.connection.collection('cities').insert({name: 'Banana', description: 'A tasty fruit'});
+    it("Returns a 204 status code", function(done){
+      request(app)
+        .delete('/cities/Banana')
+        .expect(204, done);
     });
   });

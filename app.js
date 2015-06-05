@@ -15,17 +15,7 @@ var citySchema = {
 
 var City = mongoose.model('City', citySchema, 'cities');
 
-// var cities = {
-//   'Detroit': '',
-//   'Grand Rapids': '',
-//   'Portland': ''
-// };
 
-var findRestaurants = function(db, callback) {
-   var docs = db.collection('cities').find( );
-   callback();
-   return docs;
-};
 
 app.get('/cities', function(request, response){
   // response.json(Object.keys(cities));
@@ -48,6 +38,15 @@ app.post('/cities', urlencode, function(request, response){
   mongoose.connection.collection('cities').insert(city);
   response.status(201).json(newCity.name);
 
+});
+
+app.delete('/cities/:name', function(request, response){
+  City.remove({name: request.params.name}, function(err){
+    if (err) {
+      throw err;
+    }
+  });
+  response.sendStatus(204);
 });
 
 module.exports = app;
