@@ -63,6 +63,12 @@ describe("Requests to the root path", function(){
         //but curled and got Springfield
         .expect(404, done);
     });
+    it ("Validates city name and description", function (done) {
+      request(app)
+        .post('/cities')
+        .send('name=&description=')
+        .expect(400, done);
+    });
   });
 
   describe("Deleting Cities", function(){

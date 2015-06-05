@@ -35,6 +35,11 @@ app.post('/cities', urlencode, function(request, response){
     name: newCity.name,
     description: newCity.description
   };
+  
+  if (! city.name || ! city.description) {
+    response.sendStatus(400);
+    return false;
+  }
   mongoose.connection.collection('cities').insert(city);
   response.status(201).json(newCity.name);
 
