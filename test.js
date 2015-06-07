@@ -1,6 +1,5 @@
 var request = require('supertest');
 var app = require('./app');
-var mongoose = require('mongoose');
 
 
 
@@ -72,10 +71,43 @@ describe("Requests to the root path", function(){
   });
 
   describe("Deleting Cities", function(){
-    mongoose.connection.collection('cities').insert({name: 'Banana', description: 'A tasty fruit'});
     it("Returns a 204 status code", function(done){
+      request(app)
+        .delete('/cities/Springfield')
+        .expect(204, done);
+    });
+  });
+
+  describe("Shows city info", function(){
+    it ("Creates Banana", function (done) {
+      request(app)
+        .post('/cities')
+        .send('name=Banana&description=A+tasty+fruit')
+        .expect(201, done);
+    });
+
+    it ("200 status code", function (done) {
+      request(app)
+        .get('/cities/Banana')
+        .expect(200, done);
+    });
+
+    it("Returns HTML format", function(done){
+      request(app)
+        .get('/cities/Banana')
+        .expect('Content-Type', /html/ , done);
+    });
+
+    it ("Needs have city info", function (done) {
+      request(app)
+        .get('/cities/Banana')
+        .expect( /tasty/ , done);
+    });
+
+    it ("Deletes Banana", function (done) {
       request(app)
         .delete('/cities/Banana')
         .expect(204, done);
     });
+
   });

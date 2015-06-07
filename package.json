@@ -12,7 +12,8 @@
     "express": "^4.12.3",
     "body-parser": "^1.12.4",
     "mongodb": "^2.0.33",
-    "mongoose": "^4.0.4"
+    "mongoose": "^4.0.4",
+    "ejs": "^2.3.1"
   },
   "devDependencies": {
     "supertest": "^1.0.1",

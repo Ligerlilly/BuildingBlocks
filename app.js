@@ -35,7 +35,7 @@ app.post('/cities', urlencode, function(request, response){
     name: newCity.name,
     description: newCity.description
   };
-  
+
   if (! city.name || ! city.description) {
     response.sendStatus(400);
     return false;
@@ -52,6 +52,16 @@ app.delete('/cities/:name', function(request, response){
     }
   });
   response.sendStatus(204);
+});
+
+app.get('/cities/:name', function(request, response){
+  City.findOne({ name: request.params.name }, 'name description', function(err, doc){
+    if (err) {
+      throw err;
+    }
+    response.render('show.ejs',
+      { city: { name: request.params.name, description: doc.description }});
+  });
 });
 
 module.exports = app;
